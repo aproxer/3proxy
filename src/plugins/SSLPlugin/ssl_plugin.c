@@ -309,8 +309,7 @@ static FILTER_ACTION ssl_filter_client(void *fo, struct clientparam * param, voi
 }
 
 static FILTER_ACTION ssl_filter_predata(void *fo, struct clientparam * param){
-	if(param->operation != HTTP_CONNECT) return PASS;
-	if(ntohs(param->sinsr.sin6_port) == 80) return PASS; // DON't TRY TO DECRYPT RAW HTTP traffic. Plugin doesn't support raw HTTP tunneling.
+	if(param->operation != HTTP_CONNECT || ntohs(param->sinsr.sin6_port) != 443) return PASS;
 	if(dossl(param, NULL, NULL)) {
 		return REJECT;
 	}
