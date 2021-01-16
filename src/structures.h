@@ -711,10 +711,10 @@ struct sockfuncs {
    	int (*_getsockopt)(SOCKET s, int level, int optname, void * optval, socklen_t * optlen);
 	int (*_setsockopt)(int s, int level, int optname, const void *optval, socklen_t optlen);
 	int (*_poll)(struct pollfd *fds, unsigned int nfds, int timeout);
-	size_t (*_send)(SOCKET s, const void *msg, size_t len, int flags);
-	size_t (*_sendto)(SOCKET s, const void *msg, size_t len, int flags, const struct sockaddr *to, SASIZETYPE tolen);
-	size_t (*_recv)(SOCKET s, void *buf, size_t len, int flags);
-	size_t (*_recvfrom)(SOCKET s, void * buf, size_t len, int flags, struct sockaddr * from, SASIZETYPE * fromlen);
+	int (*_send)(SOCKET s, const void *msg, size_t len, int flags);
+	int (*_sendto)(SOCKET s, const void *msg, size_t len, int flags, const struct sockaddr *to, SASIZETYPE tolen);
+	int (*_recv)(SOCKET s, void *buf, size_t len, int flags);
+	int (*_recvfrom)(SOCKET s, void * buf, size_t len, int flags, struct sockaddr * from, SASIZETYPE * fromlen);
 	int (*_shutdown)(SOCKET s, int how);
 	int (*_closesocket)(SOCKET s);
 #endif
